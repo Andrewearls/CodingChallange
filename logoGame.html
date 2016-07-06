@@ -1,0 +1,123 @@
+﻿<!--
+Name: Sagar Amin
+
+Date: 6/28/16
+
+Description: A tutorial on HTML5 was followed to create the following document(s). 
+This is a simple structure for a "News" website.
+
+Reference: http://www.littlewebhut.com/html5/
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"
+		<title>GuessIt!</title>
+		<!--rel - relationship between this file and the file being linked,
+			type - type of file,
+			href - specifies location and name of the css file.-->
+		<link rel="stylesheet" type="text/css" href="styleForLogoGame.css">
+        <script type="text/javascript"></script>
+        <script >
+            var correctAnswer = ["apple", "mlb", "nike", "starbucks", "beats", "playstation"];
+            var pictureLinks = ["image/0.png", "image/1.png", "image/2.png", "image/3.png", "image/4.png", "image/5.png"]
+            var questionNum = 0;
+            var wrongGuesses = 0;
+            var correctGuesses = 0;
+            function getanswer() {
+                var answer = document.getElementById("submitBox");
+                
+                if (answer.value.toUpperCase() == correctAnswer[questionNum].toUpperCase()) {
+                   
+                    questionNum = questionNum + 1;
+                    correctGuesses = correctGuesses + 1;
+                    replacePicture(questionNum);
+                    correctGuess();
+                    
+
+                }
+                else {
+                    wrongGuesses = wrongGuesses + 1;
+                    wrongGuess();
+                }
+            }
+
+            function replacePicture() {
+                
+                //var newSrc = "image\/{0}.png".format(questionNum);
+                document.getElementById("Picture").src = pictureLinks[questionNum];
+            }
+
+            function correctGuess(correctGuesses) {
+                
+                
+                
+                document.getElementById("CorrectGuesses").innerHTML = correctGuesses;
+                
+            }
+
+            function wrongGuess(wrongGuesses) {
+                document.getElementById("WrongGuesses").innerHTML = wrongGuesses;
+            }
+        </script>
+		
+		<!--This is a IE conditional comment. Specifies that we want the content
+			of this condition to only be used when IE is less than (lt) IE 9-->
+			
+		<!--[if lt IE 9]> 
+		<script>
+			document.createElement("article");
+			document.createElement("aside");
+			document.createElement("footer");
+			document.createElement("header");
+			document.createElement("main");
+			document.createElement("nav");
+			document.createElement("section");
+		</script>
+		<![endif]-->
+	</head>
+	<body>
+	<!--by adding a class attribute to this header so you can apply
+	a style to this header element without affecting the other header elements-->
+		<header class="banner">
+			<h1>Logo Game</h1>
+			<p>Guess the Logo! (all lower case)</p>
+		</header>
+	
+		<!----<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="archive.html">Archives</a></li>
+				<li><a href="about.html">About</a></li>
+			</ul>
+		</nav> -->
+		<main>
+            <div>
+                <label>
+                    
+                </label>
+                <img id="Picture" src="image/0.png" width="400" height="186">
+                <div>
+                    <p>Guess the logo!</p>
+                    <p><input id="submitBox" type="text" name="login" value=""></p>
+                    <input type="submit" value="Submit" onclick="getanswer()">
+
+                </div>
+                <label>correct</label>
+                <label id="CorrectGuesses">0</label>
+                <label>notcorrect</label>
+                <label id="WrongGuesses">0</label>
+            </div>
+
+		</main>
+		
+		<!--<aside>
+			<h2>Be a news reporter</h2>
+			<p>If you see news happening - Send us a Text.</p>
+		</aside>
+		-->
+		<footer>
+			<p>Game developed by Andrew, Sagar, and Wayne.</p>
+		</footer>
+	</body>
+</html>
